@@ -276,7 +276,7 @@ void titleMenu() {
 	char goldColorEscape[10] = "";
 	char newGameText[100] = "", customNewGameText[100] = "";
 	rogueEvent theEvent;
-	enum NGCommands buttonCommands[6] = {NG_NEW_GAME, NG_OPEN_GAME, NG_VIEW_RECORDING, NG_HIGH_SCORES, NG_QUIT};
+	enum NGCommands buttonCommands[6] = {NG_NEW_GAME, NG_NEW_GAME_DAILY, NG_OPEN_GAME, NG_VIEW_RECORDING, NG_HIGH_SCORES, NG_QUIT};
 	
 	cellDisplayBuffer shadowBuf[COLS][ROWS];
 	
@@ -301,6 +301,12 @@ void titleMenu() {
 	buttons[b].hotkey[0] = 'n';
 	buttons[b].hotkey[1] = 'N';
 	b++;
+    
+    initializeButton(&(buttons[b]));
+    sprintf(buttons[b].text, "     %sD%saily Game     ", goldColorEscape, whiteColorEscape);
+    buttons[b].hotkey[0] = 'd';
+    buttons[b].hotkey[1] = 'D';
+    b++;
 	
 	initializeButton(&(buttons[b]));
 	sprintf(buttons[b].text, "     %sO%spen Game      ", goldColorEscape, whiteColorEscape);
@@ -786,6 +792,30 @@ void mainBrogueJunction() {
 				// Run the main menu to get a decision out of the player.
 				titleMenu();
 				break;
+            case NG_NEW_GAME_DAILY:
+                rogue.nextGamePath[0] = '\0';
+                randomNumbersGenerated = 0;
+                
+                rogue.playbackMode = false;
+                rogue.playbackFastForward = false;
+                rogue.playbackBetweenTurns = false;
+                
+                getAvailableFilePath(path, LAST_GAME_NAME, GAME_SUFFIX);
+                strcat(path, GAME_SUFFIX);
+                strcpy(currentFilePath, path);
+                
+                time_t t = time(NULL);
+                struct tm tm = *localtime(&t);
+                
+                rogue.nextGameSeed = (tm.tm_year + 1900)*10000+(tm.tm_mon + 1)*1000+(tm.tm_mday)*100; // Seed based on clock.
+                
+                rogue.nextGame = NG_NOTHING;
+                initializeRogue(rogue.nextGameSeed);
+                startLevel(rogue.depthLevel, 1); // descending into level 1
+                
+                mainInputLoop();
+                freeEverything();
+                break;
 			case NG_NEW_GAME:
 			case NG_NEW_GAME_WITH_SEED:
 				rogue.nextGamePath[0] = '\0';
