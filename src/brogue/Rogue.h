@@ -298,6 +298,8 @@
 
 #endif
 
+static const char monsterNames[141][COLS] = {"Jules", "Larkin", "Mat", "Morton", "Orlando", "Pierce", "Prince", "Rollie", "Rollin", "Sim", "Stuart", "Wilburn", "Bennett", "Casper", "Christ", "Dell", "Egbert", "Elmo", "Fay", "Gabriel", "Hector", "Horatio", "Lige", "Saul", "Smith", "Squire", "Tobe", "Tommie", "Wyatt", "Alford", "Alma", "Alton", "Andres", "Burl", "Cicero", "Dean", "Dorsey", "Enos", "Howell", "Lou", "Loyd", "Mahlon", "Nat", "Omar", "Oran", "Parker", "Raleigh", "Reginald", "Rubin", "Seymour", "Wm", "Young", "Benjamine", "Carey", "Carlton", "Eldridge", "Elzie", "Garrett", "Isham", "Johnson", "Larry", "Logan", "Merrill", "Mont", "Oren", "Pierre", "Rex", "Rodney", "Ted", "Webster", "West", "Wheeler", "Willam", "Al", "Aloysius", "Alvie", "Anna", "Art", "Augustine", "Bailey", "Benjaman", "Beverly", "Bishop", "Clair", "Cloyd", "Coleman", "Dana", "Duncan", "Dwight", "Emile", "Evert", "Henderson", "Hunter", "Jean", "Lem", "Luis", "Mathias", "Maynard", "Miguel", "Mortimer", "Nels", "Norris", "Pat", "Phil", "Rush", "Santiago", "Sol", "Sydney", "Thaddeus", "Thornton", "Tim", "Travis", "Truman", "Watson", "Webb", "Wellington", "Winfred", "Wylie", "Alec", "Basil", "Baxter", "Bertrand", "Buford", "Burr", "Cleveland", "Colonel", "Dempsey", "Early", "Ellsworth", "Fate", "Finley", "Gabe", "Garland", "Gerald", "Herschel", "Hezekiah", "Justus", "Lindsey", "Marcellus", "Olaf"};
+
 enum eventTypes {
 	KEYSTROKE,
 	MOUSE_UP,

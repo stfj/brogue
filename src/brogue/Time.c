@@ -920,10 +920,12 @@ void addXPXPToAlly(short XPXP, creature *monst) {
         if (monst->xpxp >= XPXP_NEEDED_FOR_TELEPATHIC_BOND
             && !(monst->bookkeepingFlags & MB_TELEPATHICALLY_REVEALED)) {
             
-            monst->bookkeepingFlags |= MB_TELEPATHICALLY_REVEALED;
+            strcpy(monst->info.monsterName, monsterNames[rand_range(0, 141)]);
+            
             updateVision(true);
             monsterName(theMonsterName, monst, false);
-            sprintf(buf, "you have developed a telepathic bond with your %s.", theMonsterName);
+            sprintf(buf, "you have developed a telepathic bond with %s.", theMonsterName);
+        
             messageWithColor(buf, &advancementMessageColor, false);
         }
         if (monst->xpxp > 1500 * 20) {

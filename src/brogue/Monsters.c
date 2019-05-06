@@ -240,6 +240,12 @@ void monsterName(char *buf, creature *monst, boolean includeArticle) {
 		strcpy(buf, "you");
 		return;
 	}
+    
+    if(includeArticle && monst->bookkeepingFlags & MB_TELEPATHICALLY_REVEALED && monst->creatureState == MONSTER_ALLY)
+    {
+        includeArticle = false;
+    }
+        
 	if (canSeeMonster(monst) || rogue.playbackOmniscience) {
 		if (player.status[STATUS_HALLUCINATING] && !rogue.playbackOmniscience) {
 			
