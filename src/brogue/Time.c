@@ -920,6 +920,7 @@ void addXPXPToAlly(short XPXP, creature *monst) {
         if (monst->xpxp >= XPXP_NEEDED_FOR_TELEPATHIC_BOND
             && !(monst->bookkeepingFlags & MB_TELEPATHICALLY_REVEALED)) {
             
+            monst->bookkeepingFlags |= MB_TELEPATHICALLY_REVEALED;
             strcpy(monst->info.monsterName, monsterNames[rand_range(0, 141)]);
             
             updateVision(true);
